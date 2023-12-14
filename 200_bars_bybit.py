@@ -24,12 +24,10 @@ def kline(symb, tf):
         m['Volume'] = df.iloc[:, 5].astype(float)
         m = m.sort_values(by='Date', ignore_index=True)
 
-
-
-
     return m
 
-def kline2(symb, tf, start = '2023-12-01 00:00'):
+
+def kline2(symb, tf, start='2023-12-12 00:00'):
     url = "https://api.bybit.com"
     path = "/v5/market/kline"
     URL = url + path
@@ -52,7 +50,8 @@ def kline2(symb, tf, start = '2023-12-01 00:00'):
         m = m.sort_values(by='Date', ignore_index=True)
     return m
 
-def kline3(symb, tf, start = '2023-12-12 00:00'):
+
+def kline3(symb, tf, start='2023-12-12 00:00'):
 
     url = "https://api.bybit.com"
     path = "/v5/market/kline"
@@ -70,8 +69,6 @@ def kline3(symb, tf, start = '2023-12-12 00:00'):
     for i in range(batch_count):
         batch_start = start_ds + i * batch_size*dtf
         batch_end = min(end_ds, batch_start + batch_size*dtf)
-
-
 
         params = {'category': 'linear', "symbol": symb, "interval": tf, 'start': batch_start, 'end': batch_end}
         r = requests.get(URL, params=params)
